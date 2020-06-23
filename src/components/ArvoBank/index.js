@@ -28,11 +28,25 @@ export default class index extends Component {
                 color: "#ACACAC"
             },
             text: {
-                fontSize: 42,
+                fontSize: 22,
                 fontWeight: '700',
                 paddingTop: 50,
                 color: '#12122c'
-            }
+            },
+            text2: {
+                fontSize: 20,
+                color: '#12122c'
+            },
+            text3: {
+                paddingTop: 70,
+                color: 'gray'
+            },
+            text4: {
+                fontSize: 22,
+                fontWeight: '700',
+                paddingTop: 10,
+                color: '#12122c'
+            },
         });
         let lockIcon, closeIcon;
         lockIcon = <Icon name="md-lock" style={{ color: "#d1d1d1", marginTop: 10, marginRight: 0 }} />;
@@ -45,10 +59,15 @@ export default class index extends Component {
                         <View style={{ marginTop: 30, flexDirection: 'row', justifyContent: "space-between" }}><Text style={{ fontSize: 13, fontWeight: '400' }}>{lockIcon} SECURED BY FLUTTERWAVE</Text>
                             <TouchableOpacity onPress={this.closeRave}>{closeIcon}</TouchableOpacity>
                         </View>
-                        <Text style={styles.text}>Arvofinance payment</Text>
-                        <Text style={{ fontSize: 42, fontWeight: '700', paddingTop: 10, color: '#12122c' }}>portal! </Text>
+                        <Text style={styles.text}>Make direct payment to our</Text>
+                        <Text style={{ fontSize: 32, fontWeight: '700', paddingTop: 10, color: '#12122c' }}> Bank Account! </Text>
                         <View style={{ borderBottomWidth: 4, marginTop: 30, marginRight: '50%', borderBottomColor: '#065373' }}></View>
-                        {/* <Text>Card tokenization fee is ₦30. This amount will be refunded</Text> */}
+                        <Text/>
+                        <Text style={styles.text2}>Bank: Guaranty Trust Bank</Text>
+                        <Text style={styles.text2}>Account Number: 0257605619</Text>
+                        <Text style={styles.text2}>Account Name: OLIVER MEAD</Text>
+                        <Text style={styles.text4}>Amount: {this.props.currency} {this.props.amount}</Text>
+                        <Text  style={styles.text3} note>If you are using a different name to make payment, please notify us of your payment by sending a mail to hello@arvofinance.com</Text>
                     </View>
                 </KeyboardAwareScrollView>
             </KeyboardAvoidingView>

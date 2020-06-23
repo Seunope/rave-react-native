@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements'
 import Header from '../Header';
 
-export default class AccountHeader extends Component {
+export default class ArvoBankHeader extends Component {
     constructor(props) {
         super(props);
         this.state = { show: false };
@@ -15,7 +15,7 @@ export default class AccountHeader extends Component {
             show: !this.state.show
         }, function () {
             if (this.state.show) {
-                this.props.page("account")
+                this.props.page("arvobank")
 
             } else {
                 this.props.page("home")
@@ -70,7 +70,7 @@ export default class AccountHeader extends Component {
                 <View style={styles.container}>
                     <View style={styles.nav}>
                         <TouchableOpacity style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-between', }} onPress={this.switchToAccount} >
-                            <Text style={styles.text}>Pay with <Text style={{ fontWeight: 'bold' }}>Bank Account</Text></Text>
+                            <Text style={styles.text}>Pay to <Text style={{ fontWeight: 'bold' }}>Arvofinance Bank</Text></Text>
                             {icon}
                         </TouchableOpacity>
                     </View>

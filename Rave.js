@@ -9,6 +9,7 @@ import CardHeader from "./src/components/payment-headers/CardHeader";
 import UgMmoneyHeader from "./src/components/payment-headers/UgMmoneyHeader";
 import RwMmoneyHeader from "./src/components/payment-headers/RwMmoneyHeader";
 import ZMmoneyHeader from "./src/components/payment-headers/ZMmobileMoneyHeader";
+import ArvoBankHeader from "./src/components/payment-headers/ArvoBankHeader";
 import Card from "./src/components/Card";
 import Account from "./src/components/Account";
 import Mpesa from "./src/components/Mpesa";
@@ -16,6 +17,7 @@ import Mmoney from "./src/components/Mmoney";
 import UgMmoney from "./src/components/UgandaMobileMoney";
 import RwMmoney from "./src/components/RwandaMobileMoney";
 import ZMmoney from "./src/components/ZambiaMobileMoney";
+import ArvoBank from "./src/components/ArvoBank";
 // import Ussd from './src/components/Ussd';
 import RavePayment from "./library/RavePayment";
 import RaveMpesa from "./library/RaveMpesa";
@@ -218,6 +220,7 @@ export default class Rave extends React.Component {
           <Card
             rave={this.rave}
             phone={this.props.phone}
+            responseMessage={this.props.responseMessage}
             primarycolor={this.props.primarycolor}
             secondarycolor={this.props.secondarycolor}
             amount={this.props.amount}
@@ -1285,6 +1288,101 @@ export default class Rave extends React.Component {
           />
         );
       }
+    }else if (this.props.paymentOption == "card,arvobank") {
+      if (this.state.page == "home") {
+        this.state.bottomOne = 1;
+        this.state.bottomTwo = 90;
+        this.state.colorOne = "#000";
+        this.state.colorTwo = "#000";
+      } else if (this.state.page == "arvobank") {
+        this.state.bottomOne = height - 110;
+        this.state.bottomTwo = 1;
+        this.state.colorOne = "#F5A623";
+        this.state.colorTwo = "#000";
+      } else if (this.state.page == "card") {
+        this.state.bottomOne = 1;
+        this.state.bottomTwo = height - 110;
+        this.state.colorOne = "#000";
+        this.state.colorTwo = "#F5A623";
+      }
+
+      if (this.state.page == "card") {
+        page = (
+          <Card
+            rave={this.rave}
+            responseMessage={this.props.responseMessage}
+            primarycolor={this.props.primarycolor}
+            secondarycolor={this.props.secondarycolor}
+            amount={this.props.amount}
+            currency={this.props.currency}
+            onSuccess={res => this.props.onSuccess(res)}
+            onFailure={e => this.props.onFailure(e)}
+          />
+        );
+        header1 = (
+          <AccountHeader
+            page={this.getPage}
+            showOne={this.show}
+            bottomOne={this.state.bottomOne}
+            colorOne={this.state.colorOne}
+          />
+        );
+        header2 = (
+          <CardHeader
+            page={this.getPage}
+            showTwo={this.show}
+            bottomTwo={this.state.bottomTwo}
+            colorTwo={this.state.colorTwo}
+          />
+        );
+
+        // }else if (this.state.page == "ussd") {
+        //   page = <Ussd rave={this.raveussd} primarycolor={this.props.primarycolor} phone={this.props.phone} secondarycolor={this.props.secondarycolor} amount={this.props.amount} currency={this.props.currency} onSuccess={res => this.props.onSuccess(res)} onFailure={e => this.props.onFailure(e)} />;
+      } else if (this.state.page == "arvobank") {
+        page = (
+          <ArvoBank
+            primarycolor={this.props.primarycolor}
+            phone={this.props.phone}
+            secondarycolor={this.props.secondarycolor}
+            amount={this.props.amount}
+            currency={this.props.currency}
+          />
+        );
+        header1 = (
+          <ArvoBankHeader
+            page={this.getPage}
+            showOne={this.show}
+            bottomOne={this.state.bottomOne}
+            colorOne={this.state.colorOne}
+          />
+        );
+        header2 = (
+          <CardHeader
+            page={this.getPage}
+            showTwo={this.show}
+            bottomTwo={this.state.bottomTwo}
+            colorTwo={this.state.colorTwo}
+          />
+        );
+      } else {
+        page = <Home onClose={this.props.onClose} />;
+        header1 = (
+          <ArvoBankHeader
+            page={this.getPage}
+            showOne={this.show}
+            bottomOne={this.state.bottomOne}
+            colorOne={this.state.colorOne}
+          />
+        );
+        header2 = (
+          <CardHeader
+            page={this.getPage}
+            showTwo={this.show}
+            bottomTwo={this.state.bottomTwo}
+            colorTwo={this.state.colorTwo}
+          />
+        );
+      }
     } else {
       if (this.state.page == "home") {
         this.state.bottomOne = 1;
@@ -1302,6 +1400,7 @@ export default class Rave extends React.Component {
         page = (
           <Card
             rave={this.rave}
+            responseMessage={this.props.responseMessage}
             primarycolor={this.props.primarycolor}
             secondarycolor={this.props.secondarycolor}
             amount={this.props.amount}

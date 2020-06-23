@@ -610,7 +610,7 @@ export default class index extends Component {
           fontSize: 13,
           textAlign: "center",
           fontWeight: "bold",
-          color: this.props.secondarycolor
+          color: '#fff',//this.props.secondarycolor
         }}
       >
         PAY {this.props.currency} {this.props.amount}
@@ -1002,7 +1002,7 @@ export default class index extends Component {
               <Text
                 style={[styles.label, { fontSize: 20, marginVertical: 10 }]}
               >
-                Enter your card information to make payment
+                Enter card information to make payment
               </Text>
               <View
                 style={[
@@ -1035,6 +1035,7 @@ export default class index extends Component {
                   </View>
                 </View>
               </View>
+
               {/* <Text style={{ color: '#EE312A', fontSize: 10, display: this.state.cardnoErr, fontWeight: 'bold', marginTop: 1 }}>Enter a valid credit card number</Text> */}
             </View>
             <View style={styles.formGroup}>
@@ -1198,7 +1199,6 @@ export default class index extends Component {
               marginLeft: 0
             }}
           />
-
           <TouchableOpacity
             onPress={this.pay}
             style={{ width: "100%", marginTop: 30 }}
@@ -1206,7 +1206,7 @@ export default class index extends Component {
           >
             <View
               style={{
-                backgroundColor: this.props.primarycolor,
+                backgroundColor: '#065373',//this.props.primarycolor,
                 paddingVertical: 15,
                 borderRadius: 5,
                 opacity: this.state.loading == false ? 1 : 0.6
@@ -1215,6 +1215,9 @@ export default class index extends Component {
               {btnText}
             </View>
           </TouchableOpacity>
+
+          <Text style={{marginTop:30, textAlign:'center', color:'red', fontSize:11}} >{this.props.responseMessage}</Text>
+
         </KeyboardAwareScrollView>
       );
     }
